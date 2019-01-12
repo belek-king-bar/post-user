@@ -14,25 +14,26 @@
 {% endblock %}
 {% block content %}
 
-    <div class="card mt-5 mb-5" style="width: 18rem;">
+    <div class="card mt-5 mb-5" style="width: 30rem;">
         {% if userinfo.photo %}
             <img src="{{ userinfo.photo.url }}" class="card-img-top" alt="Аватар">
             <div class="card-body">
                 <h5 class="card-title">{{ userinfo.user.username }}</h5>
-                <p class="card-text">Друзья ползователя</p>
-                {% for friend in userinfo.friends.all %}
-                    {{ friend.username }}
-                    <br>
-                {% endfor %}
+                <p class="card-text">Друзья ползователя:<br>
+                    <p class="ml-3">{% for friend in userinfo.friends.all %}
+                        {{ friend.username }}<br>
+                    {% endfor %}</p>
+                </p>
                 <p class="btn btn-primary p-0" id="phone"><input id="add-item-btn" type="button" value="Телефон" class="btn btn-primary"></p>
             </div>
         {% else %}
             <div class="card-body">
                 <h5 class="card-title">{{ userinfo.user.username }}</h5>
-                <p class="card-text">Друзья ползователя:</p>
-                {% for friend in userinfo.friends.all %}
-                    {{ friend.username }}
-                {% endfor %}
+                <p class="card-text">Друзья ползователя:<br>
+                    <p class="mr-3">{% for friend in userinfo.friends.all %}
+                        {{ friend.username }}<br>
+                    {% endfor %}</p>
+                </p>
                 <p class="btn btn-primary p-0" id="phone"><input id="add-item-btn" type="button" value="Телефон" class="btn btn-primary"></p>
             </div>
         {% endif %}
@@ -49,13 +50,13 @@
     {% endblock %}
 
     <h4>Посты ползователя:</h4>
-    <div class="card mb-3">
-    <div class="card-body">
         {% for post in userinfo.user.author.all %}
-            {{ post.title }}<br>
+            <div class="card mb-3">
+            <div class="card-body">
+            {{ post.title }}
+            </div>
+            </div>
         {% endfor %}
-    </div>
-    </div>
 
 
 {% endblock %}

@@ -70,7 +70,6 @@ class UserInfoDetailView(LoginRequiredMixin, DetailView):
     template_name = 'user_detail.html'
 
 
-
 class UserInfoUpdateView(LoginRequiredMixin, UpdateView):
     model = UserInfo
     template_name = 'user_update.html'
