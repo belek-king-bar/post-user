@@ -5,7 +5,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'webapp:post_create' %}">Новый пост</a>
             </li>
-            {% if form.instance.author == request.user %}
+            {% if post.author == request.user %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'webapp:post_update' post.pk %}">Редактировать пост</a>
                 </li>
@@ -16,13 +16,12 @@
         {% endif %}
 {% endblock %}
 {% block content %}
-    <div>
-        <h1 class="text-center mt-4 mb-3">Пост</h1>
-            <h4 class="mb-5">{{ post.title }}</h4>
-            <div>
-                <h6>{{ post.text }}</h6>
-                <h6>Автор: {{ post.author.username }}</h6>
-            </div>
+    <div class="card mt-5">
+        <h5 class="card-header">{{ post.title }}</h5>
+        <div class="card-body">
+            <p class="card-text">{{ post.text }}</p>
+            <h4 class="card-text text-muted text-right">{{ post.author.username }}</h4>
+        </div>
     </div>
 
 {% endblock %}

@@ -2,7 +2,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.http import HttpResponseRedirect, request
 from webapp.models import Post, UserInfo
 from webapp.forms import PostForm, UserInfoForm
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.shortcuts import get_object_or_404, Http404
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -57,9 +57,7 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
 class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
     template_name = 'post_delete.html'
-    success_url = 'post_list.html'
-
-
+    success_url = reverse_lazy('webapp:post_list')
 
 
 class UserInfoListView(ListView):

@@ -1,10 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block title %}Пользователи{% endblock %}
+{% block menu %}
+        {% if request.user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'webapp:post_create' %}">Новый пост</a>
+            </li>
+        {% endif %}
+{% endblock %}
+{% block content %}
+    <div>
+        <h1 class="text-center mt-4 mb-3">Пользователь</h1>
+            <h4 class="mb-5">{{ userinfo.username }}</h4>
+            <div>
+                <h6>{{ userinfo.photo }}</h6>
+                <h6>{{ userinfo.phone }}</h6>
+            </div>
+    </div>
 
-</body>
-</html>
+{% endblock %}

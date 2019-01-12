@@ -8,13 +8,19 @@
         {% endif %}
 {% endblock %}
 {% block content %}
+    <h1 class="mb-4 mt-4 text-center">Посты</h1>
+        <div class="content d-flex">
+            <div class="row">
         {% for post in post_list %}
-            <div class="mb-4 mt-4">
-            <a href="{% url 'webapp:post_detail' post.pk %}">
-                <h4>{{ post.title }}</h4>
-                <h6>{{ post.author.username }}</h6>
-                <h6>{{ post.created_at }}</h6>
-            </a>
+            <div class="card text-white bg-dark mb-4 ml-4" style="max-width: 22rem;">
+                <div class="card-header">{{ post.title }} <i class="ml-2">{{ post.author.username }}</i>
+                </div>
+                <div class="card-body">
+                    <p class="text-right">{{ post.created_at }}</p>
+                </div>
+                <a href="{% url 'webapp:post_detail' post.pk %}" class="btn btn-success">Далее</a>
             </div>
         {% endfor %}
+            </div>
+        </div>
 {% endblock %}
