@@ -6,10 +6,10 @@
                 <a class="nav-link" href="{% url 'webapp:post_create' %}">Новый пост</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'webapp:post_update' %}">Редактировать пост</a>
+                <a class="nav-link" href="{% url 'webapp:post_update' post.pk %}">Редактировать пост</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'webapp:post_delete' %}">Удалить пост</a>
+                <a class="nav-link" href="{% url 'webapp:post_delete' post.pk %}">Удалить пост</a>
             </li>
         {% endif %}
 {% endblock %}
@@ -19,7 +19,7 @@
             <h4 class="mb-5">{{ post.title }}</h4>
             <div>
                 <h6>{{ post.text }}</h6>
-                <h6>Автор: {{ post.author.name }}</h6>
+                <h6>Автор: {{ post.author.username }}</h6>
             </div>
     </div>
 

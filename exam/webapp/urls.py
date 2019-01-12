@@ -11,11 +11,11 @@ urlpatterns = [
     path('', PostListView.as_view(), name='post_list'),
     path('post/<int:pk>', PostDetailView.as_view(), name='post_detail'),
     path('post/create', PostCreateView.as_view(), name='post_create'),
-    path('order/<int:pk>/reject', PostDeleteView.as_view(), name='order_cancel'),
-    path('order/<int:pk>/update', PostUpdateView.as_view(), name='post_update'),
-    path('users', UserInfoListView.as_view(), name='food_list'),
-    path('users/<int:pk>', UserInfoDetailView.as_view(), name='food_detail'),
-    path('users/<int:pk>/update', UserInfoUpdateView.as_view(), name='food_update')
+    path('post/<int:pk>/delete', PostDeleteView.as_view(), name='post_delete'),
+    path('post/<int:pk>/update', PostUpdateView.as_view(), name='post_update'),
+    path('users', UserInfoListView.as_view(), name='user_list'),
+    path('users/<int:pk>', UserInfoDetailView.as_view(), name='user_detail'),
+    path('users/<int:pk>/update', UserInfoUpdateView.as_view(), name='user_update')
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
