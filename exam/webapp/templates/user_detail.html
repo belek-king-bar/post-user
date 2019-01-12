@@ -19,12 +19,20 @@
             <img src="{{ userinfo.photo.url }}" class="card-img-top" alt="Аватар">
             <div class="card-body">
                 <h5 class="card-title">{{ userinfo.user.username }}</h5>
+                <p class="card-text">Друзья ползователя</p>
+                {% for friend in userinfo.friends.all %}
+                    {{ friend.username }}
+                    <br>
+                {% endfor %}
                 <p class="btn btn-primary p-0" id="phone"><input id="add-item-btn" type="button" value="Телефон" class="btn btn-primary"></p>
             </div>
         {% else %}
-            <img src="..." class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">{{ userinfo.user.username }}</h5>
+                <p class="card-text">Друзья ползователя:</p>
+                {% for friend in userinfo.friends.all %}
+                    {{ friend.username }}
+                {% endfor %}
                 <p class="btn btn-primary p-0" id="phone"><input id="add-item-btn" type="button" value="Телефон" class="btn btn-primary"></p>
             </div>
         {% endif %}
