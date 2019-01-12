@@ -10,4 +10,4 @@ class PostForm(forms.ModelForm):
 class UserInfoForm(forms.ModelForm):
     class Meta:
         model = UserInfo
-        exclude = []
+        exclude = ['friends', 'user']

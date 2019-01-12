@@ -70,10 +70,26 @@ class UserInfoDetailView(LoginRequiredMixin, DetailView):
     template_name = 'user_detail.html'
 
 
+
 class UserInfoUpdateView(LoginRequiredMixin, UpdateView):
     model = UserInfo
-    form_class = UserInfoForm
     template_name = 'user_update.html'
+    form_class = UserInfoForm
 
     def get_success_url(self):
         return reverse('webapp:user_detail', kwargs={'pk': self.object.pk})
+
+
+    def form_valid(self, form):
+        form.instance.post = get_object_or_404(UserInfo, pk=self.kwargs['pk'])
+        return super().form_valid(form)
+
+
+    def get_object(self, queryset = UserInfo.objects.all()):
+        object = super(UserInfoUpdateView, self).get_object()
+
+        if object.user == self.request.user:
+            return object
+
+        else:
+            raise Http404()

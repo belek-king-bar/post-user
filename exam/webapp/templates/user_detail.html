@@ -5,16 +5,31 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'webapp:post_create' %}">Новый пост</a>
             </li>
+            {% if userinfo.user == request.user %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'webapp:user_update' userinfo.pk %}">Редактировать данные</a>
+                </li>
+            {% endif %}
         {% endif %}
 {% endblock %}
 {% block content %}
-    <div>
-        <h1 class="text-center mt-4 mb-3">Пользователь</h1>
-            <h4 class="mb-5">{{ userinfo.username }}</h4>
-            <div>
-                <h6>{{ userinfo.photo }}</h6>
-                <h6>{{ userinfo.phone }}</h6>
-            </div>
+
+    <div class="card mt-5 mb-5" style="width: 18rem;">
+        <img src="{{ userinfo.photo.url }}" class="card-img-top" alt="Аватар">
+        <div class="card-body">
+            <h5 class="card-title">{{ userinfo.user.username }}</h5>
+            <button class="btn btn-primary" id="button">Телефон</button>
+        </div>
     </div>
+
+    <h4>Посты ползователя:</h4>
+    <div class="card mb-3">
+    <div class="card-body">
+        {% for post in userinfo.user.author.all %}
+            {{ post.title }}<br>
+        {% endfor %}
+    </div>
+    </div>
+
 
 {% endblock %}

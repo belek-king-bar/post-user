@@ -9,11 +9,16 @@
 
 {% endblock %}
 {% block content %}
-        {% for user in user_list %}
-            <div class="mb-4 mt-4">
-            <a href="{% url 'webapp:user_detail' user.pk %}">
-                <h4>{{ user.username }}</h4>
-            </a>
+    <div class="content d-flex">
+        <div class="row">
+        {% for info in userinfo_list %}
+        <div class="card text-white bg-secondary m-5" style="max-width: 18rem;">
+            <div class="card-header">{{ info.user.username }}</div>
+            <div class="card-body">
+                <a href="{% url 'webapp:user_detail' info.pk %}" class="btn btn-info">Узнать больше</a>
             </div>
+        </div>
         {% endfor %}
+        </div>
+    </div>
 {% endblock %}
