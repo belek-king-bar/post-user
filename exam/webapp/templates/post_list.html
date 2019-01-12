@@ -12,8 +12,8 @@
             <div class="mb-4 mt-4">
             <a href="{% url 'webapp:post_detail' post.pk %}">
                 <h4>{{ post.title }}</h4>
-                <h6>{{ order.author.name }}</h6>
-                <h6>{{ order.created_at }}</h6>
+                <h6>{{ post.author.username }}</h6>
+                <h6>{{ post.created_at }}</h6>
             </a>
             </div>
         {% endfor %}

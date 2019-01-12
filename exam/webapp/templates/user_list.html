@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}Меню{% endblock %}
+{% block title %}Пользователи{% endblock %}
 {% block menu %}
         {% if request.user.is_authenticated %}
             <li class="nav-item">
@@ -9,10 +9,10 @@
 
 {% endblock %}
 {% block content %}
-        {% for food in food_list %}
+        {% for user in user_list %}
             <div class="mb-4 mt-4">
-            <a href="{% url 'webapp:food_detail' food.pk %}">
-                    <h4>{{ food.name }}</h4>
+            <a href="{% url 'webapp:user_detail' user.pk %}">
+                <h4>{{ user.username }}</h4>
             </a>
             </div>
         {% endfor %}

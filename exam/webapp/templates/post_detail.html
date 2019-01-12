@@ -5,12 +5,14 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'webapp:post_create' %}">Новый пост</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'webapp:post_update' post.pk %}">Редактировать пост</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'webapp:post_delete' post.pk %}">Удалить пост</a>
-            </li>
+            {% if form.instance.author == request.user %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'webapp:post_update' post.pk %}">Редактировать пост</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'webapp:post_delete' post.pk %}">Удалить пост</a>
+                </li>
+            {% endif %}
         {% endif %}
 {% endblock %}
 {% block content %}

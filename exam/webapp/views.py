@@ -1,9 +1,9 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, View
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, request
 from webapp.models import Post, UserInfo
 from webapp.forms import PostForm, UserInfoForm
 from django.urls import reverse
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, Http404
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
@@ -12,6 +12,8 @@ class PostListView(ListView):
     model = Post
     template_name = 'post_list.html'
 
+    def get_queryset(self):
+        return self.model.objects.order_by('-created_at')
 
 class PostDetailView(LoginRequiredMixin, DetailView):
     model = Post
@@ -44,6 +46,12 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
         form.instance.post = get_object_or_404(Post, pk=self.kwargs['pk'])
         return super().form_valid(form)
 
+    def get_object(self, queryset=None):
+        self.object = super(PostUpdateView, self).get_object(queryset)
+        if self.object.author == self.request.user:
+            return self.object
+        else:
+            raise Http404
 
 
 class PostDeleteView(LoginRequiredMixin, DeleteView):
