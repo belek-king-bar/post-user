@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Пост{% endblock %}
+{% block menu %}
+        {% if request.user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'webapp:post_create' %}">Новый пост</a>
+            </li>
+        {% endif %}
+{% endblock %}
+{% block content %}
+
+<h1>Изменение поста</h1>
+    <form action="{% url 'webapp:post_update' form.instance.pk %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary ml-3">Сохранить</button>
+    </form>
+
+{% endblock %}

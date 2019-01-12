@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Статьи{% endblock %}
+{% block menu %}
+        {% if request.user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'webapp:post_create' %}">Новый пост</a>
+            </li>
+        {% endif %}
+{% endblock %}
+{% block content %}
+        {% for post in post_list %}
+            <div class="mb-4 mt-4">
+            <a href="{% url 'webapp:post_detail' post.pk %}">
+                <h4>{{ post.title }}</h4>
+                <h6>{{ order.author.name }}</h6>
+                <h6>{{ order.created_at }}</h6>
+            </a>
+            </div>
+        {% endfor %}
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Меню{% endblock %}
+{% block menu %}
+        {% if request.user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'webapp:post_create' %}">Новый пост</a>
+            </li>
+        {% endif %}
+
+{% endblock %}
+{% block content %}
+        {% for food in food_list %}
+            <div class="mb-4 mt-4">
+            <a href="{% url 'webapp:food_detail' food.pk %}">
+                    <h4>{{ food.name }}</h4>
+            </a>
+            </div>
+        {% endfor %}
+{% endblock %}
